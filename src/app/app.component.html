@@ -1,9 +1,0 @@
-<div class="game-container">
-  <h1>Jogo de Adivinhação</h1>
-  <p>Tente adivinhar o número entre 1 e 10!</p>
-
-  <input [(ngModel)]="guess" placeholder="Digite seu palpite" type="number" min="1" max="10">
-  <button (click)="checkGuess()">Verificar</button>
-
-  <p *ngIf="message">{{ message }}</p>
-</div>
