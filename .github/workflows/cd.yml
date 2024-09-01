@@ -24,8 +24,11 @@ jobs:
       - name: Build Angular app
         run: npm run build -- --configuration production
 
-
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist
+        uses: actions-gh-pages@v4
+        with:
+          branch: gh-pages
+          folder: dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
+
