@@ -30,20 +30,17 @@ describe('AppComponent', () => {
     expect(component.message).toBe('Tente novamente!');
   });
 
-  // Novo teste: Verificar se o palpite é null
   it('deve exibir "Tente novamente!" quando o palpite for null', () => {
     component.guess = null;
     component.checkGuess();
     expect(component.message).toBe('Tente novamente!');
   });
 
-  // Novo teste: Verificar se o número alvo está entre 1 e 10
   it('deve gerar um número alvo entre 1 e 10', () => {
     expect(component.targetNumber).toBeGreaterThanOrEqual(1);
     expect(component.targetNumber).toBeLessThanOrEqual(10);
   });
 
-  // Novo teste: Verificar se a mensagem é redefinida ao iniciar
   it('deve inicializar com a mensagem null', () => {
     expect(component.message).toBeNull();
   });

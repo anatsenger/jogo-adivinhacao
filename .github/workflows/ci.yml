@@ -27,9 +27,8 @@ jobs:
       - name: Run tests
         run: npm run test -- --watch=false --browsers=ChromeHeadless
 
-
   notify:
-    if: failure()  
+    if: failure()  # Executa o job notify somente se o job test falhar
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +43,6 @@ jobs:
           body: "Os testes falharam no workflow de CI. Verifique o log de execução no GitHub Actions."
           to: "anathaissenger@exemplo.com"
           from: "anathaissenger@exemplo.com"
-
 
           # testeciwarning@gmail.com
           # testeci123
