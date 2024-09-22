@@ -16,7 +16,7 @@ export class AppComponent {
 
   checkGuess() {
     if (this.guess === this.targetNumber) {
-      this.message = 'Parabéns! Você acertou aa!';
+      this.message = 'Parabéns! Você acertou!';
     } else {
       this.message = 'Tente novamente!';
     }
