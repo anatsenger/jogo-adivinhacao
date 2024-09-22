@@ -47,8 +47,8 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: "testeciwarning"
-          password: "testeci123"
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Falha no CI - Testes Angular"
           body: "Os testes falharam no workflow de CI. Verifique o log de execução no GitHub Actions."
           to: "anathaissenger@exemplo.com"
