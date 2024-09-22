@@ -28,21 +28,32 @@ jobs:
         run: npm run test -- --watch=false --browsers=ChromeHeadless
 
   notify:
-    if: failure()  # Executa o job notify somente se o job test falhar
     runs-on: ubuntu-latest
-
+    needs: test  # O job de notificação depende do job de testes
+    if: always()  # Sempre executa este job
     steps:
+      - name: Check if previous job failed
+        run: |
+          if [ "${{ needs.test.result }}" != "success" ]; then
+            echo "Test failed, sending notification..."
+          else
+            echo "Test passed, skipping notification."
+            exit 0
+          fi
+
       - name: Send email alert on test failure
+        if: ${{ needs.test.result != 'success' }}  # Executa o passo de envio de e-mail apenas se o teste falhar
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
           server_port: 465
-          username: testeciwarning@gmail.com
-          password: testeci123
+          username: "testeciwarning@gmail.com"
+          password: "testeci123"
           subject: "Falha no CI - Testes Angular"
           body: "Os testes falharam no workflow de CI. Verifique o log de execução no GitHub Actions."
           to: "anathaissenger@exemplo.com"
           from: "anathaissenger@exemplo.com"
+
 
           # testeciwarning@gmail.com
           # testeci123
