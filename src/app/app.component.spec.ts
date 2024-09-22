@@ -10,10 +10,31 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppComponent, FormsModule] // Use imports para componentes standalone
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
   it('deve criar o componente', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('deve verificar o palpite corretamente', () => {
+    component.targetNumber = 5;
+    component.guess = 5;
+    component.checkGuess();
+    expect(component.message).toBe('Parabéns! Você acertou!');
+
+    component.guess = 3;
+    component.checkGuess();
+    expect(component.message).toBe('Tente novamente!');
+  });
+
+  // Novo teste: Verificar se o palpite é null
+  it('deve exibir "Tente novamente!" quando o palpite for null', () => {
+    component.guess = null;
+    component.checkGuess();
+    expect(component.message).toBe('Tente novamente!');
   });
 
   // Novo teste: Verificar se o número alvo está entre 1 e 10
@@ -21,17 +42,9 @@ describe('AppComponent', () => {
     expect(component.targetNumber).toBeGreaterThanOrEqual(1);
     expect(component.targetNumber).toBeLessThanOrEqual(10);
   });
-  it('deve verificar o palpite corretamente', () => {
-    component.targetNumber = 5;
-    component.guess = 5;
-    component.checkGuess();
-    expect(component.message).toBe('Parabéns! Você acertou!');
 
   // Novo teste: Verificar se a mensagem é redefinida ao iniciar
   it('deve inicializar com a mensagem null', () => {
     expect(component.message).toBeNull();
-    component.guess = 3;
-    component.checkGuess();
-    expect(component.message).toBe('Tente novamente!');
   });
 });
