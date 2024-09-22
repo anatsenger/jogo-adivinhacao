@@ -52,7 +52,7 @@ jobs:
           subject: "Falha no CI - Testes Angular"
           body: "Os testes falharam no workflow de CI. Verifique o log de execução no GitHub Actions."
           to: "anathaissenger@hotmail.com"
-          from: "anathaissenger@hotmail.com"
+          from: "testeciwarning@gmail.com"
 
 
           # testeciwarning@gmail.com
