@@ -1,0 +1,50 @@
+name: CI - Testes Angular com Alertas
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.17.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+
+  notify:
+    if: failure()  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send email alert on test failure
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: testeciwarning@gmail.com
+          password: testeci123
+          subject: "Falha no CI - Testes Angular"
+          body: "Os testes falharam no workflow de CI. Verifique o log de execução no GitHub Actions."
+          to: "anathaissenger@exemplo.com"
+          from: "anathaissenger@exemplo.com"
+
+
+          # testeciwarning@gmail.com
+          # testeci123
