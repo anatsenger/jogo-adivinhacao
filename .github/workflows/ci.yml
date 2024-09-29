@@ -29,8 +29,8 @@ jobs:
 
   notify:
     runs-on: ubuntu-latest
-    needs: test  # O job de notificação depende do job de testes
-    if: always()  # Sempre executa este job
+    needs: test 
+    if: always()
     steps:
       - name: Check if previous job failed
         run: |
@@ -42,7 +42,7 @@ jobs:
           fi
 
       - name: Send email alert on test failure
-        if: ${{ needs.test.result != 'success' }}  # Executa o passo de envio de e-mail apenas se o teste falhar
+        if: ${{ needs.test.result != 'success' }}
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -54,7 +54,3 @@ jobs:
           to: "anathaissenger@hotmail.com"
           from: "testeciwarning@gmail.com"
 
-
-          # testeciwarning@gmail.com
-          # testeci123
-          # dssd jwpw eoxa qmzj
