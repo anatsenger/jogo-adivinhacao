@@ -23,7 +23,7 @@ describe('AppComponent', () => {
     component.targetNumber = 5;
     component.guess = 5;
     component.checkGuess();
-    expect(component.message).toBe('Parabéns! Você acertou!');
+    expect(component.message).toBe('Parabéns! Você acertou!!');
 
     component.guess = 3;
     component.checkGuess();
