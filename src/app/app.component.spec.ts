@@ -8,7 +8,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppComponent, FormsModule] // Use imports para componentes standalone
+      imports: [AppComponent, FormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
